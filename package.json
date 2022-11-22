@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "clsx": "^1.2.1",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.4",
     "firebase": "^9.14.0",
