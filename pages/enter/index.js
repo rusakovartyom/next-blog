@@ -62,6 +62,25 @@ const UsernameForm = () => {
   const [isValid, setIsValid] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const onChange = (event) => {
+    // Force form value typed in form to match correct format
+    const value = event.target.value.toLowerCase();
+    const regex = /^(?=[a-zA-Z0-9._]{3,15}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
+
+    // Only set form value if length < 3 OR it passes regex
+    if (value.length < 3) {
+      setFormValue(value);
+      setLoading(false);
+      setIsValid(false);
+    }
+
+    if (regex.test(value)) {
+      setFormValue(value);
+      setLoading(true);
+      setIsValid(false);
+    }
+  };
+
   return (
     !username && (
       <section>
