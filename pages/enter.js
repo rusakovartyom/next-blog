@@ -9,3 +9,13 @@ const EnterPage = () => {
   );
 };
 export default EnterPage;
+
+const SignInButton = (second) => {
+  third;
+};
+const SignOutButton = (second) => {
+  third;
+};
+const UsernameForm = (second) => {
+  third;
+};
