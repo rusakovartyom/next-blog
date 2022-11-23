@@ -23,9 +23,7 @@ function MyApp({ Component, pageProps }) {
       setUsername(null);
     }
 
-    return () => {
-      second;
-    };
+    return unsubscribe;
   }, [user]);
 
   return (
