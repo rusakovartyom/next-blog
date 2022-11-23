@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import clsx from 'clsx';
+import { useContext } from 'react';
+import { UserContext } from '../../lib/context';
 
 import styles from './styles.module.css';
 
 const Navbar = () => {
-  const user = null;
-  const username = null;
+  const { user, username } = useContext(UserContext);
   const linkBlue = clsx(styles.navbarLink, styles.navbarLinkBlue);
 
   return (
