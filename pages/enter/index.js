@@ -1,24 +1,28 @@
 import Image from 'next/image';
 import { auth, googleAuthProvider } from '../../lib/firebase';
+import { useContext } from 'react';
+import UserContext from '../../lib/context';
+
 import Button from '../../components/Button';
 
 import styles from './styles.module.css';
 
 const EnterPage = () => {
-  const user = null;
-  const username = null;
+  const { user, username } = useContext(UserContext);
 
   return (
     <main>
-      {user ? (
-        !username ? (
-          <UsernameForm />
+      <div className={styles.container}>
+        {user ? (
+          !username ? (
+            <UsernameForm />
+          ) : (
+            <SignOutButton />
+          )
         ) : (
-          <SignOutButton />
-        )
-      ) : (
-        <SignInButton />
-      )}
+          <SignInButton />
+        )}
+      </div>
     </main>
   );
 };
@@ -33,7 +37,7 @@ const SignInButton = () => {
     }
   };
   return (
-    <div className={styles.container}>
+    <>
       <Button google onClick={signInGoogle}>
         <Image
           className={styles.googleIcon}
@@ -47,7 +51,7 @@ const SignInButton = () => {
       <Button onClick={() => auth.signInAnonymously()}>
         Sign in Anonymously
       </Button>
-    </div>
+    </>
   );
 };
 const SignOutButton = () => {
