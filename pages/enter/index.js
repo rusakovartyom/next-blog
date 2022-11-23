@@ -57,4 +57,8 @@ const SignInButton = () => {
 const SignOutButton = () => {
   return <Button onClick={() => auth.signOut()}>Sign Out</Button>;
 };
-const UsernameForm = () => {};
+const UsernameForm = () => {
+  const [formValue, setFormValue] = useState('');
+  const [isValid, setIsValid] = useState(false);
+  const [loading, setLoading] = useState(false);
+};
