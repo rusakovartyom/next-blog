@@ -61,4 +61,34 @@ const UsernameForm = () => {
   const [formValue, setFormValue] = useState('');
   const [isValid, setIsValid] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  return (
+    !username && (
+      <section>
+        <h3>Choose username</h3>
+        <form onSubmit={onSubmit}>
+          <input
+            type="text"
+            name="username"
+            placeholder="Enter username..."
+            value={formValue}
+            onChange={onChange}
+          />
+
+          <Button green type="submit" disabled={!isValid}>
+            Choose
+          </Button>
+
+          <h3>Debug State</h3>
+          <div>
+            Username: {formValue}
+            <br />
+            Loading: {loading.toString()}
+            <br />
+            Username Valid: {isValid.toString()}
+          </div>
+        </form>
+      </section>
+    )
+  );
 };
