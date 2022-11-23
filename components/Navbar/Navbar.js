@@ -20,7 +20,7 @@ const Navbar = () => {
         {/* {user is signed-in and has username} */}
         {username && (
           <>
-            <li className={styles.navbarListLeft}>
+            <li className="pushLeft">
               <Link className={linkBlue} href="/admin">
                 Write Posts
               </Link>
