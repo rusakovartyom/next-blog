@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import { auth, firestore, googleAuthProvider } from '../../lib/firebase';
-import { useContext } from 'react';
+import { useContext, useState, useEffect, useMemo } from 'react';
 import UserContext from '../../lib/context';
+import debounce from 'lodash.debounce';
 
 import Button from '../../components/Button';
 
@@ -64,10 +65,6 @@ const UsernameForm = () => {
 
   const { user, username } = useContext(UserContext);
 
-  useEffect(() => {
-    checkUsername(formValue);
-  }, [formValue]);
-
   const onChange = (event) => {
     // Force form value typed in form to match correct format
     const value = event.target.value.toLowerCase();
@@ -88,23 +85,32 @@ const UsernameForm = () => {
   };
 
   // Hit the database for username match after each debounced change
-  // useCallback required for debounce to work
-  const checkUsername = async (username) => {
-    if (username.length >= 3) {
-      const ref = firestore.doc(`username/$(username)`);
-      const { exists } = await ref.get();
-      console.log('Firestore read executed!');
-      setIsValid(!exists);
-      setLoading(false);
-    }
-  };
+  // useMemo required for debounce to work
+  const checkUsername = useMemo(
+    () =>
+      debounce(async (username) => {
+        if (username.length >= 3) {
+          const ref = firestore.doc(`username/$(username)`);
+          const { exists } = await ref.get();
+          console.log('Firestore read executed!');
+          setIsValid(!exists);
+          setLoading(false);
+        }
+      }, 500),
+    []
+  );
+
+  useEffect(() => {
+    checkUsername(formValue);
+  }, [formValue, checkUsername]);
 
   return (
     !username && (
       <section>
         <h3>Choose username</h3>
-        <form onSubmit={onSubmit}>
+        <form>
           <input
+            className={styles.input}
             type="text"
             name="username"
             placeholder="Enter username..."
