@@ -6,7 +6,7 @@ import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <UserContext.Provider>
+    <UserContext.Provider value={{ user: {}, username: 'rusakov' }}>
       <Navbar />
       <Component {...pageProps} />
       <Toaster />
