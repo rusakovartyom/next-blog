@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import clsx from 'clsx';
 import { useContext } from 'react';
-import { UserContext } from '../../lib/context';
+import UserContext from '../../lib/context';
 
 import styles from './styles.module.css';
 
