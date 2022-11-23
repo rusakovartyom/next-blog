@@ -34,7 +34,7 @@ const SignInButton = () => {
   };
   return (
     <div className={styles.container}>
-      <Button google>
+      <Button google onClick={signInGoogle}>
         <Image
           className={styles.googleIcon}
           width="30"
@@ -50,5 +50,7 @@ const SignInButton = () => {
     </div>
   );
 };
-const SignOutButton = () => {};
+const SignOutButton = () => {
+  return <Button onClick={() => auth.signOut()}>Sign Out</Button>;
+};
 const UsernameForm = () => {};
