@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { auth, googleAuthProvider } from '../../lib/firebase';
+import { auth, firestore, googleAuthProvider } from '../../lib/firebase';
 import { useContext } from 'react';
 import UserContext from '../../lib/context';
 
@@ -62,6 +62,12 @@ const UsernameForm = () => {
   const [isValid, setIsValid] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const { user, username } = useContext(UserContext);
+
+  useEffect(() => {
+    checkUsername(formValue);
+  }, [formValue]);
+
   const onChange = (event) => {
     // Force form value typed in form to match correct format
     const value = event.target.value.toLowerCase();
@@ -78,6 +84,18 @@ const UsernameForm = () => {
       setFormValue(value);
       setLoading(true);
       setIsValid(false);
+    }
+  };
+
+  // Hit the database for username match after each debounced change
+  // useCallback required for debounce to work
+  const checkUsername = async (username) => {
+    if (username.length >= 3) {
+      const ref = firestore.doc(`username/$(username)`);
+      const { exists } = await ref.get();
+      console.log('Firestore read executed!');
+      setIsValid(!exists);
+      setLoading(false);
     }
   };
 
