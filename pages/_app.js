@@ -10,6 +10,24 @@ function MyApp({ Component, pageProps }) {
   const [user] = useAuthState(auth);
   const [username, setUsername] = useState(null);
 
+  useEffect(() => {
+    // Turn off realtime subscription
+    let unsubscribe;
+
+    if (user) {
+      const ref = firestore.collection('users').doc(user.uid);
+      unsubscribe = ref.onSnapshot((doc) => {
+        setUsername(doc.data()?.username);
+      });
+    } else {
+      setUsername(null);
+    }
+
+    return () => {
+      second;
+    };
+  }, [user]);
+
   return (
     <UserContext.Provider value={{ user: {}, username: 'rusakov' }}>
       <Navbar />
