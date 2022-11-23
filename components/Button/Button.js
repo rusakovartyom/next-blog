@@ -9,6 +9,10 @@ const Button = (props) => {
     props.green && styles.green,
     props.google && styles.google
   );
-  return <button className={button}>{props.children}</button>;
+  return (
+    <button onClick={props.onClick} className={button}>
+      {props.children}
+    </button>
+  );
 };
 export default Button;
