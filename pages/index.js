@@ -30,6 +30,36 @@ const Home = (props) => {
 
   const [postsEnd, setPostsEnd] = useState(false);
 
+  const getMorePosts = async () => {
+    setLoading(true);
+    // Last post from initial query
+    const last = posts[posts.length - 1];
+    // Last post timestamp
+    // Converting if createdAt is not a timestamp
+    const cursor =
+      typeof last.createdAt === 'number'
+        ? fromMillis(last.createdAt)
+        : last.createdAt;
+    // Creating new query that starts from the last post
+    // That will offset the query to give a new batch of posts till the limit reached
+    const query = firestore
+      .collectionGroup('posts')
+      .where('published', '==', true)
+      .orderBy('createdAt', 'desc')
+      .startAfter(cursor)
+      .limit(LIMIT);
+    // Fetch new posts
+    const newPosts = (await query.get()).docs.map((doc) => doc.data());
+    // Add new posts to existing posts list
+    setPosts(posts.concat(newPosts));
+    setLoading(false);
+
+    // If length of new posts query is less than limit — user reached the end of database
+    if (newPosts.length < LIMIT) {
+      setPostsEnd(true);
+    }
+  };
+
   return (
     <main>
       <PostFeed posts={posts} />
