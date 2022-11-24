@@ -44,7 +44,7 @@ const SignInButton = () => {
           className={styles.googleIcon}
           width="30"
           height="30"
-          src="/assets/icons8-google.svg"
+          src="/assets/google-icon.svg"
           alt=""
         />
         Sign in with Google
