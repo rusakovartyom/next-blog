@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  margin-top: 100px;
+}
+
+.link {
+  font-size: 2rem;
+  margin: 0 auto;
+  padding: 30px;
+  text-align: center;
+}
+
+.link:hover {
+  color: var(--color-blue);
+  text-decoration: underline;
+}
