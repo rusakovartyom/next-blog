@@ -28,6 +28,7 @@ export async function getStaticProps({ params }) {
   };
 }
 
+// Allows to control which pages are generated during the build
 export async function getStaticPaths() {
   // Queries all posts in the database
   const snapshot = firestore.collectionGroup('posts').get();
@@ -45,7 +46,7 @@ export async function getStaticPaths() {
     //  {params: {username, slug}}
     // ],
     paths,
-    // When user nagivates to the page that has not been rendered yet, tells Next.js to fallback to server-side rendering
+    // When user navigates to the page that has not been rendered yet, tells Next.js to fallback to server-side rendering
     fallback: 'blocking',
   };
 }
