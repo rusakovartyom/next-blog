@@ -141,6 +141,12 @@ const UsernameForm = () => {
             onChange={onChange}
           />
 
+          <UsernameMessage
+            username={formValue}
+            isValid={isValid}
+            loading={loading}
+          />
+
           <Button green type="submit" disabled={!isValid}>
             Choose
           </Button>
@@ -157,4 +163,18 @@ const UsernameForm = () => {
       </section>
     )
   );
+};
+
+const UsernameMessage = ({ username, isValid, loading }) => {
+  if (loading) {
+    return <p>Checking...</p>;
+  } else if (isValid) {
+    return <p className="success">{username} is available!</p>;
+  } else if (username && !isValid && username.length < 3) {
+    return <p className="danger">username should be more than 2 letters.</p>;
+  } else if (username && !isValid) {
+    return <p className="danger">{username} should be more than 3 letters.</p>;
+  } else {
+    return <p></p>;
+  }
 };
