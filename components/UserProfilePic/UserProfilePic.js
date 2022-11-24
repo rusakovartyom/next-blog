@@ -7,7 +7,7 @@ const UserProfilePic = (props) => {
     <Image
       className={styles.image}
       src={props.src === null ? '/assets/profile-picture.svg' : props.src}
-      alt={props.username}
+      alt={`${props.alt} profile picture`}
       width={props.width}
       height={props.height}
     />
