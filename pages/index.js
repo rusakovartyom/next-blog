@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { firebase, fromMillis, postToJSON } from '../lib/firebase';
+import { firestore, fromMillis, postToJSON } from '../lib/firebase';
 
 import PostFeed from '../components/PostFeed';
 import Button from '../components/Button';
