@@ -10,7 +10,7 @@ const Button = (props) => {
     props.google && styles.google
   );
   return (
-    <button onClick={props.onClick} className={button}>
+    <button type={props.type} onClick={props.onClick} className={button}>
       {props.children}
     </button>
   );
