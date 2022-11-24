@@ -6,7 +6,6 @@ import Button from '../components/Button';
 import Loader from '../components/Loader';
 
 import styles from '../styles/Home.module.css';
-import { useState } from 'react';
 
 // Max post to query per page
 const LIMIT = 2;
