@@ -84,6 +84,29 @@ const UsernameForm = () => {
     }
   };
 
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    // Create refs for both documents
+    const userDoc = firestore.doc(`users/${user.uid}`);
+    const usernameDoc = firestore.doc(`usernames/${formValue}`);
+
+    const batch = firestore.batch();
+    batch.set(userDoc, {
+      username: formValue,
+      photoURL: user.photoURL,
+      displayName: user.displayName,
+    });
+    batch.set(usernameDoc, {
+      uid: user.uid,
+    });
+
+    try {
+      await batch.commit();
+    } catch (error) {
+      alert(error);
+    }
+  };
   // Hit the database for username match after each debounced change
   // useMemo required for debounce to work
   const checkUsername = useMemo(
@@ -107,8 +130,8 @@ const UsernameForm = () => {
   return (
     !username && (
       <section>
-        <h3>Choose username</h3>
-        <form>
+        <h3>Choose your username</h3>
+        <form onSubmit={onSubmit}>
           <input
             className={styles.input}
             type="text"
