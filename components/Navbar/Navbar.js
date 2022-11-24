@@ -32,6 +32,8 @@ const Navbar = () => {
                   className={styles.navbarImg}
                   src={user?.photoURL}
                   alt=""
+                  width="50"
+                  height="50"
                 />
               </Link>
             </li>
