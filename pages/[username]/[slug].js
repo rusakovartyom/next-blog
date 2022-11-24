@@ -1,4 +1,4 @@
-import { getUserWithUsername, postToJSON } from '../../lib/firebase';
+import { firestore, getUserWithUsername, postToJSON } from '../../lib/firebase';
 
 // Fetches data at build-time, pre-renders page in advance
 export async function getStaticProps({ params }) {
@@ -25,6 +25,28 @@ export async function getStaticProps({ params }) {
     props: { post, path },
     // Regenerates the page on the server when new request comes in after 5000 milliseconds
     revalidate: 5000,
+  };
+}
+
+export async function getStaticPaths() {
+  // Queries all posts in the database
+  const snapshot = firestore.collectionGroup('posts').get();
+
+  // Maps each post into an object that contains username and slug to make paths to each of them
+  const paths = snapshot.docs.map((doc) => {
+    const { username, slug } = doc.data();
+    return {
+      params: { username, slug },
+    };
+  });
+  return {
+    // Must be in this format:
+    // paths: [
+    //  {params: {username, slug}}
+    // ],
+    paths,
+    // When user nagivates to the page that has not been rendered yet, tells Next.js to fallback to server-side rendering
+    fallback: 'blocking',
   };
 }
 
