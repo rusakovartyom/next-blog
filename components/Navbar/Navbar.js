@@ -29,10 +29,9 @@ const Navbar = () => {
             <li>
               <Link href={`/${username}`}>
                 <UserProfilePic
+                  style={{ width: '50px', height: '50px' }}
                   src={user?.photoURL}
                   alt={username}
-                  width="50"
-                  height="50"
                 />
               </Link>
             </li>
