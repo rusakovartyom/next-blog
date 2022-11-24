@@ -13,13 +13,13 @@ const PostContent = ({ post }) => {
 
   return (
     <div className={styles.card}>
-      <span className={style.text}>
-        Written by {''}
-        <Link className={style.link} href={`/${post.username}/`}>
+      <h1>{post?.title}</h1>
+      <span className={styles.text}>
+        Written by{' '}
+        <Link className={styles.link} href={`/${post.username}/`}>
           @{post.username}
-        </Link>
-        {''}
-        on {createdAt.toISOString()}
+        </Link>{' '}
+        on {createdAt.toLocaleDateString('en-GB')}
       </span>
       <ReactMarkdown>{post?.content}</ReactMarkdown>
     </div>
