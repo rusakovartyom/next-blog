@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import UserProfilePic from '../UserProfilePic';
 import clsx from 'clsx';
 import { useContext } from 'react';
 import UserContext from '../../lib/context';
@@ -28,17 +28,7 @@ const Navbar = () => {
             </li>
             <li>
               <Link href={`/${username}`}>
-                <Image
-                  className={styles.navbarImg}
-                  src={
-                    user?.photoURL === null
-                      ? '/assets/profile-picture.svg'
-                      : user?.photoURL
-                  }
-                  alt=""
-                  width="50"
-                  height="50"
-                />
+                <UserProfilePic src={user?.photoURL} width="50" height="50" />
               </Link>
             </li>
           </>
