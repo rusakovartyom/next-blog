@@ -1,0 +1,13 @@
+.userProfile {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
+}
+
+.userImage {
+  display: block;
+  margin: auto;
+  border-radius: 50%;
+  max-width: 150px;
+}
