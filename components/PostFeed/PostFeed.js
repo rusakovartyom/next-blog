@@ -1,13 +1,18 @@
 import Link from 'next/link';
 
+import styles from './styles.module.css';
+
 const PostFeed = ({ posts, admin }) => {
   const feed = posts
-    ? post.map((post) => <PostItem post={post} key={post.slug} admin={admin} />)
+    ? posts.map((post) => (
+        <PostItem post={post} key={post.slug} admin={admin} />
+      ))
     : null;
   return feed;
 };
 
 const PostItem = ({ post }) => {
+  console.log(post.username);
   // Naive method to calc word count and read time
   const wordCount = post?.content.trim().split(/\s+/g).length;
   const minutesToRead = (wordCount / 100 + 1).toFixed(0);
@@ -26,7 +31,7 @@ const PostItem = ({ post }) => {
         <span>
           {wordCount} words. {minutesToRead} min read.
         </span>
-        <span>❤️ {post.heartCount} Hearts</span>
+        <span className="pushLeft">❤️ {post.heartCount} Hearts</span>
       </footer>
     </div>
   );
