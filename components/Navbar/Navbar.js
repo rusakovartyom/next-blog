@@ -30,7 +30,11 @@ const Navbar = () => {
               <Link href={`/${username}`}>
                 <Image
                   className={styles.navbarImg}
-                  src={user?.photoURL}
+                  src={
+                    user?.photoURL === null
+                      ? '/assets/profile-picture.svg'
+                      : user?.photoURL
+                  }
                   alt=""
                   width="50"
                   height="50"
