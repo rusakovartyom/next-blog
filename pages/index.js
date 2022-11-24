@@ -1,6 +1,10 @@
+import { useState } from 'react';
+import { firebase, fromMillis, postToJSON } from '../lib/firebase';
+
 import PostFeed from '../components/PostFeed';
 import Button from '../components/Button';
 import Loader from '../components/Loader';
+
 import styles from '../styles/Home.module.css';
 import { useState } from 'react';
 
