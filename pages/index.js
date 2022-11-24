@@ -35,6 +35,10 @@ const Home = (props) => {
         <Button onClick={getMorePosts}>Load more...</Button>
       )}
 
+      <Loader show={loading} />
+
+      {postsEnd && <p>You have reached the end!</p>}
+
       {}
     </main>
   );
