@@ -1,9 +1,9 @@
 import UserProfile from '../../components/UserProfile';
 
-const UserProfilePage = () => {
+const UserProfilePage = ({ user }) => {
   return (
     <main>
-      <UserProfile />
+      <UserProfile user={user} />
     </main>
   );
 };
