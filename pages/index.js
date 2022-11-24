@@ -26,5 +26,9 @@ const Home = (props) => {
 
   const [postsEnd, setPostsEnd] = useState(false);
 
-  return <main></main>;
+  return (
+    <main>
+      <PostFeed posts={posts} />
+    </main>
+  );
 };
