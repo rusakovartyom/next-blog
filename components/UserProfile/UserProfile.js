@@ -2,15 +2,17 @@ import UserProfilePic from '../UserProfilePic';
 
 import styles from './styles.module.css';
 
-const UserProfile = (user) => {
+const UserProfile = ({ user }) => {
   return (
     <div className={styles.userProfile}>
       <UserProfilePic
-        className={styles.userImage}
+        style={{
+          width: '150px',
+          height: '150px',
+          margin: 'auto',
+        }}
         src={user.photoURL}
         alt={user.username}
-        width="20%"
-        height="auto"
       />
       <p>
         <i>@{user.username}</i>
