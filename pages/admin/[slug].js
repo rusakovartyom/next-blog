@@ -9,16 +9,17 @@ import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import AuthCheck from '../../components/AuthCheck';
 import Button from '../../components/Button';
+import ImageUploader from '../../components/ImageUploader';
 
 import styles from './styles.module.css';
 
 const AdminPostEdit = () => {
   return (
-    <main>
+    <div>
       <AuthCheck>
         <PostManager />
       </AuthCheck>
-    </main>
+    </div>
   );
 };
 
@@ -118,6 +119,7 @@ const PostForm = ({ defaultValues, postRef, preview }) => {
       )}
 
       <div className={preview ? styles.hidden : styles.controls}>
+        <ImageUploader />
         <textarea
           name="content"
           {...register('content', {
