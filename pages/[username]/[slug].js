@@ -1,7 +1,13 @@
+import { useContext } from 'react';
 import { firestore, getUserWithUsername, postToJSON } from '../../lib/firebase';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
+import UserContext from '../../lib/context';
 
+import Link from 'next/link';
 import PostContent from '../../components/PostContent';
+import AuthCheck from '../../components/AuthCheck';
+import HeartButton from '../../components/HeartButton';
+import Button from '../../components/Button';
 
 import styles from './styles.module.css';
 
@@ -64,6 +70,8 @@ const Post = (props) => {
   // Defines post (defaults to realtime data, but if it hasn't been loaded yet — falls back to pre-rendered data on the server from props)
   const post = realtimePost || props.post;
 
+  const { user: currentUser } = useContext(UserContext);
+
   return (
     <main className={styles.container}>
       <section>
@@ -74,6 +82,22 @@ const Post = (props) => {
         <p>
           <strong>{post.heartCount || 0} 🤍</strong>
         </p>
+
+        <AuthCheck
+          fallback={
+            <Link href="/enter">
+              <Button>❤️ Sign Up</Button>
+            </Link>
+          }
+        >
+          <HeartButton postRef={postRef} />
+        </AuthCheck>
+
+        {currentUser?.uid === post.uid && (
+          <Link href={`/admin/${post.slug}`}>
+            <Button blue>Edit Post</Button>
+          </Link>
+        )}
       </aside>
     </main>
   );
