@@ -1,7 +1,8 @@
+import AuthCheck from '../../components/AuthCheck';
 const AdminPostEdit = () => {
   return (
     <main>
-      <h1>Edit Post</h1>
+      <AuthCheck></AuthCheck>
     </main>
   );
 };
