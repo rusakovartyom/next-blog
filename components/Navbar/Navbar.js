@@ -3,12 +3,22 @@ import UserProfilePic from '../UserProfilePic';
 import clsx from 'clsx';
 import { useContext } from 'react';
 import UserContext from '../../lib/context';
+import { useRouter } from 'next/router';
+import { auth } from '../../lib/firebase';
+
+import Button from '../Button';
 
 import styles from './styles.module.css';
 
 const Navbar = () => {
+  const router = useRouter();
   const { user, username } = useContext(UserContext);
   const linkBlue = clsx(styles.navbarLink, styles.navbarLinkBlue);
+
+  const signOut = () => {
+    auth.signOut();
+    router.reload();
+  };
 
   return (
     <nav className={styles.navbar}>
@@ -22,6 +32,9 @@ const Navbar = () => {
         {username && (
           <>
             <li className="pushLeft">
+              <Button onClick={signOut}>Sign Out</Button>
+            </li>
+            <li>
               <Link className={linkBlue} href="/admin">
                 Write Posts
               </Link>
