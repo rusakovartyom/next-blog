@@ -69,7 +69,13 @@ const PostManager = () => {
 
 const PostForm = ({ defaultValues, postRef, preview }) => {
   // Form config
-  const { register, handleSubmit, reset, watch } = useForm({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors, isDirty, isValid },
+  } = useForm({
     defaultValues,
     mode: 'onChange',
   });
@@ -95,8 +101,16 @@ const PostForm = ({ defaultValues, postRef, preview }) => {
       )}
 
       <div className={preview ? styles.hidden : styles.controls}>
-        <textarea name="content" {...register('content')}></textarea>
+        <textarea
+          name="content"
+          {...register('content', {
+            maxLength: { value: 20000, message: 'content is too long' },
+            minLength: { value: 10, message: 'content is too short' },
+            required: { value: true, message: 'content is required' },
+          })}
+        ></textarea>
 
+        {errors.content && <p className="danger">{errors.content.message}</p>}
         <fieldset>
           <input
             className={styles.checkbox}
@@ -106,8 +120,8 @@ const PostForm = ({ defaultValues, postRef, preview }) => {
           />
           <label>Published</label>
         </fieldset>
-
-        <Button green type="submit">
+        {/* Disables button if form is not valid or user didn't interact with it */}
+        <Button green type="submit" disabled={!isDirty || !isValid}>
           Save changes
         </Button>
       </div>
