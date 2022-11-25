@@ -109,6 +109,8 @@ const PostForm = ({ defaultValues, postRef, preview }) => {
             required: { value: true, message: 'content is required' },
           })}
         ></textarea>
+
+        {errors.content && <p className="danger">{errors.content.message}</p>}
         <fieldset>
           <input
             className={styles.checkbox}
