@@ -5,8 +5,6 @@ import PostFeed from '../components/PostFeed';
 import Button from '../components/Button';
 import Loader from '../components/Loader';
 
-import styles from '../styles/Home.module.css';
-
 // Max post to query per page
 const LIMIT = 2;
 
