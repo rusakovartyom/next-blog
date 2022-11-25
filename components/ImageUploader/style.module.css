@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  background-color: var(--color-gray);
+  border: none;
+  color: var(--color-text);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  margin: 0.5rem 1rem 0.5rem 0;
+}
+
+.input {
+  display: none;
+}
+
+.uploadSnippet {
+  margin-left: auto;
+  background: white;
+  padding: 5px;
+  margin: 5px 0;
+}
