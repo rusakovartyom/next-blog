@@ -101,7 +101,14 @@ const PostForm = ({ defaultValues, postRef, preview }) => {
       )}
 
       <div className={preview ? styles.hidden : styles.controls}>
-        <textarea name="content" {...register('content')}></textarea>
+        <textarea
+          name="content"
+          {...register('content', {
+            maxLength: { value: 20000, message: 'content is too long' },
+            minLength: { value: 10, message: 'content is too short' },
+            required: { value: true, message: 'content is required' },
+          })}
+        ></textarea>
         <fieldset>
           <input
             className={styles.checkbox}
