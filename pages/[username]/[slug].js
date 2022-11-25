@@ -5,6 +5,8 @@ import UserContext from '../../lib/context';
 
 import Link from 'next/link';
 import PostContent from '../../components/PostContent';
+import AuthCheck from '../../components/AuthCheck';
+import HeartButton from '../../components/HeartButton';
 import Button from '../../components/Button';
 
 import styles from './styles.module.css';
@@ -80,6 +82,17 @@ const Post = (props) => {
         <p>
           <strong>{post.heartCount || 0} 🤍</strong>
         </p>
+
+        <AuthCheck
+          fallback={
+            <Link href="/enter">
+              <Button>❤️ Sign Up</Button>
+            </Link>
+          }
+        >
+          <HeartButton postRef={postRef} />
+        </AuthCheck>
+
         {currentUser?.uid === post.uid && (
           <Link href={`/admin/${post.slug}`}>
             <Button blue>Edit Post</Button>
