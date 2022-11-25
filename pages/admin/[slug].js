@@ -60,6 +60,23 @@ const PostManager = () => {
             <Button blue>
               <Link href={`/${post.username}/${post.slug}`}>Live view</Link>
             </Button>
+            {!preview ? (
+              <>
+                <span>Use Markdown to write and format posts.</span>
+                <span>
+                  Here&apos;s the{' '}
+                  <a
+                    className={styles.link}
+                    href="https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Markdown cheatsheet
+                  </a>{' '}
+                  for reference.
+                </span>
+              </>
+            ) : null}
           </aside>
         </>
       )}
