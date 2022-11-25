@@ -24,9 +24,8 @@
   min-width: 250px;
   min-height: 200px;
   text-align: center;
-  justify-content: center;
   position: sticky;
-  top: 80px;
+  top: 90px;
   height: 0;
 }
 
@@ -34,6 +33,19 @@
   border: none;
   padding: 1rem 0;
   font-size: 1.25rem;
+}
+
+.container span {
+  text-align: left;
+  padding: 0.5rem 0;
+}
+
+.link {
+  color: var(--color-blue);
+}
+
+.link:hover {
+  text-decoration: underline;
 }
 
 .toolsTitle {
