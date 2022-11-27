@@ -54,17 +54,20 @@ const PostManager = () => {
             />
           </section>
           <aside>
-            <h3 className={styles.toolsTitle}>Tools</h3>
-            <Button onClick={() => setPreview(!preview)}>
-              {preview ? 'Edit' : 'Preview'}
-            </Button>
-            <Button blue>
-              <Link href={`/${post.username}/${post.slug}`}>Live view</Link>
-            </Button>
+            <h1 className={styles.toolsTitle}>Tools</h1>
+            <div className={styles.buttons}>
+              <Button onClick={() => setPreview(!preview)}>
+                {preview ? 'Edit' : 'Preview'}
+              </Button>
+              <Button blue>
+                <Link href={`/${post.username}/${post.slug}`}>Live view</Link>
+              </Button>
+              <DeletePostButton postRef={postRef} />
+            </div>
             {!preview ? (
-              <>
-                <span>Use Markdown to write and format posts.</span>
-                <span>
+              <div>
+                <p>Use Markdown to write and format posts.</p>
+                <p>
                   Here&apos;s the{' '}
                   <a
                     className={styles.link}
@@ -75,8 +78,8 @@ const PostManager = () => {
                     Markdown cheatsheet
                   </a>{' '}
                   for reference.
-                </span>
-              </>
+                </p>
+              </div>
             ) : null}
           </aside>
         </>
@@ -130,14 +133,9 @@ const PostForm = ({ defaultValues, postRef, preview }) => {
         ></textarea>
 
         {errors.content && <p className="danger">{errors.content.message}</p>}
-        <fieldset>
-          <input
-            className={styles.checkbox}
-            type="checkbox"
-            name="published"
-            {...register('published')}
-          />
-          <label>Published</label>
+        <fieldset className={styles.checkbox}>
+          <input type="checkbox" name="published" {...register('published')} />
+          <label htmlFor="published">Published</label>
         </fieldset>
         {/* Disables button if form is not valid or user didn't interact with it */}
         <Button green type="submit" disabled={!isDirty || !isValid}>
@@ -147,5 +145,24 @@ const PostForm = ({ defaultValues, postRef, preview }) => {
     </form>
   );
 };
+
+function DeletePostButton({ postRef }) {
+  const router = useRouter();
+
+  const deletePost = async () => {
+    const doIt = confirm('Are you sure?');
+    if (doIt) {
+      await postRef.delete();
+      router.push('/admin');
+      toast('Post got deleted ', { icon: '🗑️' });
+    }
+  };
+
+  return (
+    <Button red onClick={deletePost}>
+      Delete
+    </Button>
+  );
+}
 
 export default AdminPostEdit;

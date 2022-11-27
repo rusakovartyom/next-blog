@@ -62,13 +62,13 @@ export async function getStaticPaths() {
   };
 }
 
-const Post = (props) => {
+const Post = ({ path, fetchedPost }) => {
   // Reference to the post
-  const postRef = firestore.doc(props.path);
+  const postRef = firestore.doc(path);
   // Uses useDocumentData hook to get realtime feed of the post
   const [realtimePost] = useDocumentData(postRef);
   // Defines post (defaults to realtime data, but if it hasn't been loaded yet — falls back to pre-rendered data on the server from props)
-  const post = realtimePost || props.post;
+  const post = realtimePost || fetchedPost;
 
   const { user: currentUser } = useContext(UserContext);
 
@@ -80,7 +80,7 @@ const Post = (props) => {
 
       <aside className={styles.card}>
         <p>
-          <strong>{post.heartCount || 0} 🤍</strong>
+          <strong>{post?.heartCount || 0} 🤍</strong>
         </p>
 
         <AuthCheck
@@ -93,8 +93,8 @@ const Post = (props) => {
           <HeartButton postRef={postRef} />
         </AuthCheck>
 
-        {currentUser?.uid === post.uid && (
-          <Link href={`/admin/${post.slug}`}>
+        {currentUser?.uid === post?.uid && (
+          <Link href={`/admin/${post?.slug}`}>
             <Button blue>Edit Post</Button>
           </Link>
         )}

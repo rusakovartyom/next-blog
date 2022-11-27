@@ -2,13 +2,13 @@ import Image from 'next/image';
 
 import styles from './styles.module.css';
 
-const UserProfilePic = (props) => {
+const UserProfilePic = ({ style, src, alt }) => {
   return (
-    <div style={props.style} className={styles.container}>
+    <div style={style} className={styles.container}>
       <Image
         className={styles.image}
-        src={props.src === null ? '/assets/profile-picture.png' : props.src}
-        alt={`${props.alt} profile picture`}
+        src={src === null ? '/assets/profile-picture.png' : src}
+        alt={`${alt} profile picture`}
         fill
         sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,

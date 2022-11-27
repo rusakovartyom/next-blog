@@ -9,17 +9,17 @@ const PostContent = ({ post }) => {
   const createdAt =
     typeof post?.createdAt === 'number'
       ? new Date(post.createdAt)
-      : post.createdAt.toDate();
+      : post?.createdAt.toDate();
 
   return (
     <div className={styles.card}>
       <h1>{post?.title}</h1>
       <span className={styles.text}>
         Written by{' '}
-        <Link className={styles.link} href={`/${post.username}/`}>
-          @{post.username}
+        <Link className={styles.link} href={`/${post?.username}/`}>
+          @{post?.username}
         </Link>{' '}
-        on {createdAt.toLocaleDateString('en-GB')}
+        on {createdAt?.toLocaleDateString('en-GB')}
       </span>
       <ReactMarkdown>{post?.content}</ReactMarkdown>
     </div>

@@ -13,7 +13,6 @@ import styles from './styles.module.css';
 const Navbar = () => {
   const router = useRouter();
   const { user, username } = useContext(UserContext);
-  const linkBlue = clsx(styles.navbarLink, styles.navbarLinkBlue);
 
   const signOut = () => {
     auth.signOut();
@@ -35,8 +34,8 @@ const Navbar = () => {
               <Button onClick={signOut}>Sign Out</Button>
             </li>
             <li>
-              <Link className={linkBlue} href="/admin">
-                Write Posts
+              <Link href="/admin">
+                <Button blue>Write Posts</Button>
               </Link>
             </li>
             <li>
@@ -54,8 +53,8 @@ const Navbar = () => {
         {/* user is not signed OR has not created username */}
         {!username && (
           <li>
-            <Link className={linkBlue} href="/enter">
-              Log in
+            <Link href="/enter">
+              <Button blue>Log in</Button>
             </Link>
           </li>
         )}

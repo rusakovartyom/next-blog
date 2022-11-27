@@ -7,5 +7,16 @@
 }
 
 .footer {
+  margin-top: 10px;
   display: flex;
+  align-items: center;
+}
+
+.count {
+  display: block;
+  margin-bottom: 2rem;
+}
+
+.editButton {
+  margin-right: 1rem;
 }

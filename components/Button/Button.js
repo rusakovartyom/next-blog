@@ -1,17 +1,17 @@
 import clsx from 'clsx';
 import styles from './styles.module.css';
 
-const Button = (props) => {
+const Button = ({ blue, red, green, google, type, onClick, children }) => {
   const button = clsx(
     styles.button,
-    props.blue && styles.blue,
-    props.red && styles.red,
-    props.green && styles.green,
-    props.google && styles.google
+    blue && styles.blue,
+    red && styles.red,
+    green && styles.green,
+    google && styles.google
   );
   return (
-    <button type={props.type} onClick={props.onClick} className={button}>
-      {props.children}
+    <button type={type} onClick={onClick} className={button}>
+      {children}
     </button>
   );
 };
