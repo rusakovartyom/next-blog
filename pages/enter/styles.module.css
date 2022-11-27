@@ -5,6 +5,13 @@
   align-items: center;
 }
 
+.buttons {
+  display: flex;
+  flex-direction: column;
+  height: 140px;
+  justify-content: space-between;
+}
+
 .googleIcon {
   margin-top: 3px;
   margin-right: 10px;
