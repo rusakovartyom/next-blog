@@ -35,7 +35,7 @@ const HeartButton = ({ postRef }) => {
   return heartDoc?.exists() ? (
     <Button onClick={removeHeart}>💔 Unheart</Button>
   ) : (
-    <Button onClick={addHeart}>💗 Heart</Button>
+    <Button onClick={addHeart}>❤️ Heart</Button>
   );
 };
 
