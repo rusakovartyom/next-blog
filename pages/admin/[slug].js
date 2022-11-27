@@ -62,6 +62,7 @@ const PostManager = () => {
               <Button blue>
                 <Link href={`/${post.username}/${post.slug}`}>Live view</Link>
               </Button>
+              <DeletePostButton postRef={postRef} />
             </div>
             {!preview ? (
               <div>
@@ -144,5 +145,24 @@ const PostForm = ({ defaultValues, postRef, preview }) => {
     </form>
   );
 };
+
+function DeletePostButton({ postRef }) {
+  const router = useRouter();
+
+  const deletePost = async () => {
+    const doIt = confirm('Are you sure?');
+    if (doIt) {
+      await postRef.delete();
+      router.push('/admin');
+      toast('Post got deleted ', { icon: '🗑️' });
+    }
+  };
+
+  return (
+    <Button red onClick={deletePost}>
+      Delete
+    </Button>
+  );
+}
 
 export default AdminPostEdit;
