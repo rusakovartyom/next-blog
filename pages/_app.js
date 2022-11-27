@@ -12,6 +12,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <UserContext.Provider value={userData}>
       <Head>
+        <title>Rusakov Blog</title>
         <link rel="shortcut icon" href="/images/favicon.ico" />
         <link
           rel="apple-touch-icon"
