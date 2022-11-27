@@ -21,7 +21,7 @@ const EnterPage = () => {
             <SignOutButton />
           )
         ) : (
-          <SignInButton />
+          <SignInButtons />
         )}
       </div>
     </main>
@@ -29,7 +29,7 @@ const EnterPage = () => {
 };
 export default EnterPage;
 
-const SignInButton = () => {
+const SignInButtons = () => {
   const signInGoogle = async () => {
     try {
       await auth.signInWithPopup(googleAuthProvider);
@@ -38,7 +38,7 @@ const SignInButton = () => {
     }
   };
   return (
-    <>
+    <div className={styles.buttons}>
       <Button google onClick={signInGoogle}>
         <Image
           className={styles.googleIcon}
@@ -52,7 +52,7 @@ const SignInButton = () => {
       <Button onClick={() => auth.signInAnonymously()}>
         Sign in Anonymously
       </Button>
-    </>
+    </div>
   );
 };
 const SignOutButton = () => {
