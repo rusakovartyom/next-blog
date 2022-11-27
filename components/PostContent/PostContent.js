@@ -16,8 +16,8 @@ const PostContent = ({ post }) => {
       <h1>{post?.title}</h1>
       <span className={styles.text}>
         Written by{' '}
-        <Link className={styles.link} href={`/${post.username}/`}>
-          @{post.username}
+        <Link className={styles.link} href={`/${post?.username}/`}>
+          @{post?.username}
         </Link>{' '}
         on {createdAt.toLocaleDateString('en-GB')}
       </span>
