@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Button from '../Button';
 
 import styles from './styles.module.css';
 
@@ -11,7 +12,7 @@ const PostFeed = ({ posts, admin }) => {
   return feed;
 };
 
-const PostItem = ({ post }) => {
+const PostItem = ({ post, admin = false }) => {
   // Naive method to calc word count and read time
   const wordCount = post?.content.trim().split(/\s+/g).length;
   const minutesToRead = (wordCount / 100 + 1).toFixed(0);
@@ -26,10 +27,24 @@ const PostItem = ({ post }) => {
         <h2>{post.title}</h2>
       </Link>
 
+      <span className={styles.count}>
+        {wordCount} words. {minutesToRead} min read.
+      </span>
+
       <footer className={styles.footer}>
-        <span>
-          {wordCount} words. {minutesToRead} min read.
-        </span>
+        {admin && (
+          <>
+            <Link className={styles.editButton} href={`/admin/${post.slug}`}>
+              <Button blue>Edit</Button>
+            </Link>
+
+            {post.published ? (
+              <p className="success">Published</p>
+            ) : (
+              <p className="danger">Not published</p>
+            )}
+          </>
+        )}
         <span className="pushLeft">❤️ {post.heartCount} Hearts</span>
       </footer>
     </div>
