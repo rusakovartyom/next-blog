@@ -6,7 +6,7 @@ import Button from '../components/Button';
 import Loader from '../components/Loader';
 
 // Max post to query per page
-const LIMIT = 2;
+const LIMIT = 3;
 
 export async function getServerSideProps(context) {
   const postsQuery = firestore
@@ -68,9 +68,11 @@ const Home = (props) => {
 
       <Loader show={loading} />
 
-      {postsEnd && <p>You have reached the end!</p>}
-
-      {}
+      {postsEnd && (
+        <p>
+          <strong>You have reached the end!</strong>
+        </p>
+      )}
     </main>
   );
 };
