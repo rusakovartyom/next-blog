@@ -22,11 +22,18 @@
   flex-direction: column;
   width: 20%;
   min-width: 250px;
-  min-height: 200px;
+  min-height: 450px;
   text-align: center;
   position: sticky;
   top: 90px;
   height: 0;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  height: 110px;
+  justify-content: space-between;
 }
 
 .container fieldset {
@@ -35,9 +42,9 @@
   font-size: 1.25rem;
 }
 
-.container span {
+.container p {
   text-align: left;
-  padding: 0.5rem 0;
+  padding: 0;
 }
 
 .link {
@@ -46,10 +53,6 @@
 
 .link:hover {
   text-decoration: underline;
-}
-
-.toolsTitle {
-  margin-right: 1rem;
 }
 
 @media only screen and (max-width: 768px) {
@@ -89,10 +92,10 @@
   border: none;
   outline: none;
   padding: 0.5rem;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 .checkbox {
-  display: inline;
-  width: auto;
+  display: flex;
+  justify-content: center;
 }

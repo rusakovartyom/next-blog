@@ -35,6 +35,10 @@ img {
   max-width: 100%;
 }
 
+code {
+  overflow-x: scroll;
+}
+
 /* Utilities */
 
 .pushLeft {
