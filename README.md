@@ -1,34 +1,38 @@
+# Simple Trello
+
+A full-stack blogging web app powered by React.js, Next.js and Firebase. Deployed via Vercel.
+
+# Features
+
+A user can: 
+- Log in via Google or anonymously
+- Choose a custom username
+- Write a post using Markdown 
+- Add an image to it (supports JPEG, PNG, GIF) 
+- Publish it on the app or keep it as a draft
+- Delete afterwards if they don't want to keep it
+- Interact with posts of other users by giving them likes or just reading them
+
+# What I used
+
+This project was built with:
+
+- [React.js](https://reactjs.org), to make this app modular, scalable and simple for adding future features
+- [Next.js](https://nextjs.org/), for dynamic routing, server-side rendering and data fetching
+- [Firebase](https://firebase.google.com/), for backend user authentication, database and files storage
+
+I used additional packages:
+
+- [lodash.debounce](https://www.npmjs.com/package/lodash.debounce): for preventing excessive amount of validation checks during user input
+- [react-hot-toast](https://react-hot-toast.com): react component for custom toast notifications
+- [lodash.kebabcase](https://www.npmjs.com/package/lodash.kebabcase): for converting titles to kebabcase and using them as ids for each post made by users
+- [react-firebase-hooks](https://www.npmjs.com/package/react-firebase-hooks): a set of reusable React Hooks for Firebase 
+- [react-hook-form](https://react-hook-form.com/): for easy-to-use forms validation
+- [react-markdown](https://remarkjs.github.io/react-markdown/): a markdown component for React for writing posts 
+
+Also:
+
+- [Node.js](https://nodejs.org/en) 18.12.0
+- [npm](https://www.npmjs.com) 9.1.2
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
